@@ -5,10 +5,8 @@ const db = require('../db/authorsDb')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  console.log('hit route')
   db.getAuthors()
     .then((authorsList) => {
-      console.log(authorsList)
       res.json(authorsList)
     })
     .catch((err) => {
@@ -29,6 +27,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/add', (req, res) => {
   const author = req.body
+
   db.addAuthor(author)
     .then((authorId) => db.getAuthorById(authorId))
     .then((author) => res.json(author))

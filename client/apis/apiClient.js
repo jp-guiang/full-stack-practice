@@ -3,9 +3,14 @@ import request from 'superagent'
 const rootUrl = '/api/v1'
 
 export function getAuthors() {
-  console.log('Getting Authors')
   return request.get(rootUrl + '/authors').then((res) => {
-    console.log(res.body)
     return res.body
   })
+}
+
+export function addAuthor(book, author) {
+  return request
+    .post(rootUrl + '/authors/add')
+    .send({ book, author })
+    .then((res) => res.body)
 }
