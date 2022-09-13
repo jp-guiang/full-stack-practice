@@ -5,9 +5,11 @@ const db = require('../db/authorsDb')
 const router = express.Router()
 
 router.get('/', (req, res) => {
+  console.log('hit route')
   db.getAuthors()
     .then((authorsList) => {
-      res.json({ authors: authorsList.map((author) => author) })
+      console.log(authorsList)
+      res.json(authorsList)
     })
     .catch((err) => {
       console.log(err)
